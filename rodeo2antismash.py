@@ -1,7 +1,6 @@
 import os
 import csv
 import re
-import multiprocessing as mp
 from collections import OrderedDict
 from Bio import SeqIO
 from Bio.SeqFeature import SeqFeature, FeatureLocation
@@ -9,12 +8,6 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation
 
 
 def rodeo_output_iterator(rod_dir, rod_dir_type):
-    
-    if rod_dir_type is None:
-        if 'main_co_occur.csv' in os.listdir(rod_dir):
-            rod_dir_type = 'RODEO'
-        else:
-            rod_dir_type = 'RIPPER'
     
     if rod_dir_type == 'RODEO':
         # It woulod be easier to use Pandas, but this way is more memory-efficient.
