@@ -143,7 +143,7 @@ def convert_gbk(gb_dir, gb_out_dir, table, bg_domains, n, product_class):
         
         start, end = cluster_coords.values()
         cluster_location = FeatureLocation(start, end)
-        cluster_qualifiers = OrderedDict([('contig_edge', str(contig_edge)), ('product', product_class)])
+        cluster_qualifiers = OrderedDict([('contig_edge', str(contig_edge)), ('product', 'product_class')])
         cluster = SeqFeature(location = cluster_location, type = 'cluster', qualifiers = cluster_qualifiers)
         record.features = [cluster] + record.features
         

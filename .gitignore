@@ -2,6 +2,5 @@
 *.pyc
 test*
 gbk/
-converted_gbk/
 ripper/
 rodeo/
