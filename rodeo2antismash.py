@@ -5,6 +5,51 @@ from collections import OrderedDict
 from Bio import SeqIO
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 
+class RodeoOutput(object):
+    
+    def __init__(self, table):
+        
+        self.query = table[0][0]
+        self.table = table
+    
+    def table_proccessing(self, bg_domains, n):
+    
+        self.biosynthetic_genes = []
+                
+        operon_buffer = []
+        operon_domain_buffer = []
+        
+        prev_end = 0
+        prev_strand = ''
+        
+        for row in self.table:
+
+            if len(row) > 7:
+                domain = row[7]
+                if row[7] in bg_domains:
+                    self.biosynthetic_genes.append(row[3])
+            else:
+                domain = 'no_match'
+
+            start = min(int(row[4]), int(row[5]))
+            if (row[6] == prev_strand) and (start - prev_end < n):
+                operon_buffer.append(row[3])
+                operon_domain_buffer.append(domain)
+            else:
+                if self.query in operon_buffer:
+                    self.operon_accs = operon_buffer
+                    self.operon_domains = operon_domain_buffer
+                
+                operon_buffer = [row[3]]
+                operon_domain_buffer = [domain]        
+            
+            prev_end = max(int(row[4]), int(row[5]))
+            prev_strand = row[6]
+                     
+        if self.query in operon_buffer:
+            self.operon_accs = operon_buffer
+            self.operon_domains = operon_domain_buffer
+
 
 
 def rodeo_output_iterator(rod_dir, rod_dir_type):
@@ -25,56 +70,20 @@ def rodeo_output_iterator(rod_dir, rod_dir_type):
                     table.append(row)
                 
                 else:
-                    yield table
+                    yield RodeoOutput(table)
                     prev_seed = row[0]
                     table = [row]
                 
-            yield table
+            yield RodeoOutput(table)
             
     elif rod_dir_type == 'RIPPER':
         for folder in os.listdir(rod_dir):
             if 'main_co_occur.csv' in os.listdir('%s/%s' % (rod_dir, folder)):
                 with open('%s/%s/main_co_occur.csv' % (rod_dir, folder)) as infile:
-                    
                     infile.next()
-                    yield list(csv.reader(infile))
-
-
-
-def rodeo_output_proccessing(table, bg_domains, n):
-    
-    operon_border_accs = []
-    biosynthetic_genes = []
-    
-    
-    operon_buffer = []
-    prev_end = 0
-    prev_strand = ''
-    rodeo_query = table[0][0] # acsession of rodeo query
-
-    for row in table:
-        start = min(int(row[4]), int(row[5]))
-        if (row[6] == prev_strand) and (start - prev_end < n):
-            operon_buffer.append(row[3])
-                    
-        else:
-            if rodeo_query in operon_buffer:
-                operon_border_accs = [operon_buffer[0], operon_buffer[-1]]
-                
-            operon_buffer = [row[3]]
-                    
-        prev_end = max(int(row[4]), int(row[5]))
-        prev_strand = row[6]
-        
-        if len(row) > 7:
-            if row[7] in bg_domains:
-                biosynthetic_genes.append(row[3])
-        
-        
-    if rodeo_query in operon_buffer:
-        operon_border_accs = [operon_buffer[0], operon_buffer[-1]]
-        
-    return (operon_border_accs, biosynthetic_genes)
+                    infile_as_list = list(csv.reader(infile))
+                    if len(infile_as_list) != 0:
+                        yield RodeoOutput(infile_as_list)
 
 
 
@@ -118,12 +127,14 @@ def check_if_border(feature, operon_borders):
 
 
 
-def convert_gbk(gb_dir, gb_out_dir, table, bg_domains, n, product_class):
+def convert_gbk(gb_dir, gb_out_dir, rodeo_output, bg_domains, n, product_class):
     
-    operon_border_accs, biosynthetic_genes = rodeo_output_proccessing(table, bg_domains, n)
+    rodeo_output.table_proccessing(bg_domains, n)
+    operon_border_accs = (rodeo_output.operon_accs[0], rodeo_output.operon_accs[-1])
+    biosynthetic_genes = rodeo_output.biosynthetic_genes
     
     contig_edge = False
-    prot_id = table[0][0]
+    prot_id = rodeo_output.query
         
     genbank = SeqIO.parse('%s%s.gbk' % (gb_dir, prot_id), 'genbank')
     for record in genbank: # Every file is expected to contain only one record

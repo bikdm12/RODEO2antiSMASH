@@ -1,0 +1,39 @@
+Methyltransf_11,PF08241.12,Methyltransferase domain
+Methyltransf_2,PF00891.18,O-methyltransferase domain
+Methyltransf_25,PF13649.6,Methyltransferase domain
+TfuA,PF07812.12,TfuA-like protein
+ThiF,PF00899.21,ThiF family
+YcaO,PF02624.16,"YcaO cyclodehydratase, ATP-ad Mg2+-binding"
+TIGR00027,TIGR00027,"mthyl_TIGR00027: methyltransferase, TIGR00027 family"
+TIGR00702,TIGR00702,TIGR00702: YcaO-type kinase domain
+TIGR02356,TIGR02356,adenyl_thiF: thiazole biosynthesis adenylyltransferase ThiF
+TIGR03534,TIGR03534,"RF_mod_PrmC: protein-(glutamine-N5) methyltransferase, release factor-specific"
+TIGR03549,TIGR03549,TIGR03549: YcaO domain protein
+TIGR03601,TIGR03601,"B_an_ocin: bacteriocin, heterocycloanthracin/sonorensin family"
+TIGR03603,TIGR03603,"cyclo_dehy_ocin: thiazole/oxazole-forming peptide maturase, SagC family component"
+TIGR03604,TIGR03604,"TOMM_cyclo_SagD: thiazole/oxazole-forming peptide maturase, SagD family component"
+TIGR03605,TIGR03605,antibiot_sagB: SagB-type dehydrogenase domain
+TIGR03693,TIGR03693,ocin_ThiF_like: putative thiazole-containing bacteriocin maturation protein
+TIGR03793,TIGR03793,TOMM_pelo: NHLP leader peptide domain
+TIGR03798,TIGR03798,ocin_TIGR03798: nif11-like leader peptide domain
+TIGR03882,TIGR03882,cyclo_dehyd_2: bacteriocin biosynthesis cyclodehydratase domain
+TIGR03891,TIGR03891,thiopep_ocin: thiopeptide-type bacteriocin biosynthesis domain
+TIGR03892,TIGR03892,thiopep_precurs: thiazolylpeptide-type bacteriocin precursor
+TIGR03893,TIGR03893,"lant_SP_1948: type 2 lantibiotic, SP_1948 family"
+TIGR03949,TIGR03949,"bact_IIb_cerein: class IIb bacteriocin, lactobin A/cerein 7B family"
+TIGR03965,TIGR03965,mycofact_glyco: mycofactocin system glycosyltransferase
+TIGR03971,TIGR03971,SDR_subfam_1: SDR family mycofactocin-dependent oxidoreductase
+TIGR03975,TIGR03975,rSAM_ocin_1: ribosomal peptide maturation radical SAM protein 1
+TIGR03997,TIGR03997,mycofact_OYE_2: mycofactocin system FadH/OYE family oxidoreductase 2
+TIGR04078,TIGR04078,"rSAM_yydG: peptide modification radical SAM enzyme, YydG family"
+TIGR04107,TIGR04107,rSAM_HutW: putative heme utilization radical SAM enzyme HutW
+TIGR04187,TIGR04187,"GRASP_SAV_5884: ATP-grasp ribosomal peptide maturase, SAV_5884 family"
+TIGR04188,TIGR04188,"methyltr_grsp: methyltransferase, ATP-grasp peptide maturase system"
+TIGR04223,TIGR04223,quorum_AgrD: cyclic lactone autoinducer peptide
+TIGR04282,TIGR04282,"glyco_like_cofC: transferase 1, rSAM/selenodomain-associated"
+TIGR04424,TIGR04424,metallo_McbB: McbB family protein
+TIGR04470,TIGR04470,rSAM_mob_pairB: radical SAM mobile pair protein B
+TIGR04479,TIGR04479,"bcpD_PhpK_rSAM: radical SAM P-methyltransferase, PhpK family"
+TIGR04511,TIGR04511,SagB_rel_DH_2: putative peptide maturation dehydrogenase
+TIGR04538,TIGR04538,"P450_cycloAA_1: cytochrome P450, cyclodipeptide synthase-associated"
+TIGR04545,TIGR04545,rSAM_ahbD_hemeb: heme b synthase
